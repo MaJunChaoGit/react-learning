@@ -31,7 +31,9 @@ ol, ul {
   text-align: center;
   width: 34px;
 }
-
+.highlight {
+  color: red;
+}
 .square:focus {
   outline: none;
 }
