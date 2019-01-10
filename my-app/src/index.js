@@ -21,6 +21,7 @@ function calculateWinner(squares) {
   }
   return null;
 }
+
 function Square(props) {
   return (
     <button className="square" onClick={props.onClick}>
@@ -28,6 +29,7 @@ function Square(props) {
     </button>
   )
 }
+
 class Board extends React.Component {
 
   renderSquare(i) {
@@ -66,6 +68,7 @@ class Board extends React.Component {
 class Game extends React.Component {
   constructor() {
     super();
+
     this.state = {
       history: [{
         squares: Array(9).fill(null)
@@ -99,6 +102,7 @@ class Game extends React.Component {
     const history = this.state.history;
     const current = history[this.state.stepNumber];
     const winner = calculateWinner(current.squares);
+
     const moves = history.map((step, move) => {
       const desc = move ? ('Move #' + move) : 'Game start';
       return (
@@ -107,7 +111,9 @@ class Game extends React.Component {
         </li>
       );
     });
+
     let status;
+
     if (winner) {
       status = 'Winner ' + winner;
     } else {
