@@ -38,16 +38,22 @@ class Board extends Component {
   }
 
   render() {
-    var rows = [];
-    for (var i = 0; i < 3; i++) {
-      var row = [];
-      for (var j = 3 * i; j < 3 * i + 3; j++) {
-        row.push(this.renderSquare(j));
-      }
-      rows.push(<div className="board-row" key={i}>{row}</div>);
-    }
     return (
-      <div>{rows}</div>
+      <div>
+        {
+          (function(obj) {
+            let rows = [];
+            for (var i = 0; i < 3; i++) {
+              var row = [];
+              for (var j = 3 * i; j < 3 * i + 3; j++) {
+                row.push(obj.renderSquare(j));
+              }
+              rows.push(<div className="board-row" key={i}>{row}</div>);
+            }
+            return rows;
+          })(this)
+        }
+      </div>
     );
   }
 }
