@@ -1,0 +1,20 @@
+#root .header {
+  background: white;
+  height: 48px;
+  line-height: 48px;
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flex;
+  display: -o-flex;
+  display: flex;
+  align-items: center;
+}
+#root .content {
+  padding: 0 50px;
+  background: white;
+}
+#root .orderButton {
+  position: fixed;
+  top: 10px;
+  right: 20px;
+}
