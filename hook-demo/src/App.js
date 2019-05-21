@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import './App.css';
-import Example from './Components/Example.js';
+import Counter from './Components/Counter.js';
 
 class App extends Component {
   render() {
     return (
-      <Example></Example>
+      <Counter></Counter>
     );
   }
 }
