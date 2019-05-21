@@ -1,4 +1,4 @@
-import React, { Component, useState } from 'react';
+import React, { Component, useState, useEffect, useRef } from 'react';
 import useInterval from './useInterval';
 
 // export default class Counter extends React.Component {
@@ -39,21 +39,61 @@ import useInterval from './useInterval';
 //   }
 // }
 
-export default function Counter() {
-  let [count, setCount] = useState(0);
-  let [delay, setDelay] = useState(1000);
+// export default function Counter() {
+//   const [count, setCount] = useState(0);
+//   const [delay, setDelay] = useState(1000);
+//   const [isRunning, setIsRunning] = useState(true);
 
-  useInterval(() => {
+//   useInterval(() => {
+//     setCount(count + 1);
+//   }, isRunning ? delay : null);
+
+//   function handleDelayChange(e) {
+//     setDelay(Number(e.target.value));
+//   }
+//   return (
+//     <>
+//       <h1>{count}</h1>
+//       <input type="text" value={delay} onChange={handleDelayChange}/>
+//     </>
+//   )
+// }
+
+// export default function Counter(props) {
+//   const [count, setCount] = useState(0);
+
+//   useEffect(() => {
+//     let id = setInterval(() => {
+//       console.log(props.count);
+//       setCount(count + 1); 
+//     }, 1000);
+//     return () => clearInterval(id);
+//   }, []);
+  
+//   return <h1>{count}</h1>
+// }
+
+export default function Counter(props) {
+  const [count, setCount] = useState(0);
+  const savedCallback = useRef();
+
+  function callback() {
     setCount(count + 1);
-  }, delay);
-
-  function handleDelayChange(e) {
-    setDelay(Number(e.target.value));
   }
-  return (
-    <>
-      <h1>{count}</h1>
-      <input type="text" value={delay} onChange={handleDelayChange}/>
-    </>
-  )
+  
+  useEffect(() => {
+    savedCallback.current = callback;
+  });
+
+  useEffect(() =>{
+    function tick() {
+      savedCallback.current();
+    }
+    let id = setInterval(() => {
+      tick();
+    }, 1000);
+    return () => clearInterval(id);
+  }, []);
+
+  return <h1>{count}</h1>
 }
