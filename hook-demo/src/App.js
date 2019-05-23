@@ -1,6 +1,6 @@
 import React, { Component, useState, useEffect } from 'react';
 import './App.css';
-import Counter from './Components/Counter.js';
+import Cleanup from './Components/Cleanup.js';
 
 class App extends Component {
   
@@ -18,7 +18,7 @@ class App extends Component {
   }
   render() {
     return (
-      <Counter count={this.state.count}></Counter>
+      <Cleanup number={this.state.count}></Cleanup>
     );
   }
 }
